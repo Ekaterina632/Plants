@@ -1,0 +1,73 @@
+As a user I want to find a plant by name so that I can see its traits. 
+Plant database
+Photo database
+Backend PlantsService with REST API, method GET GetPlantsByName
+Backend PhotoService with REST API, method GET GetPhotosById
+Frontend to display results
+Frontend search bar
+
+
+As a user I want to login
+
+User account database
+Backend UserAccountService with REST API, method GET LoginUserAccount, POST CreateUserAccount
+Frontend login form
+
+
+As a user I want to add a plant to my "favourite" collection so that I have them saved for future usage.
+User database
+Frontend favourite collection list with plant names and photos and link to plant page
+Backend PlantsService with REST API, GET GetPlantById
+Backend UserDatabaseService with REST API, POST AddFavourite, DELETE DeleteFavourite, GET GetFavourites
+
+
+As a user I want to search plants by blooming period so that I can see all plants blooming in desired months
+
+Backend PlantsService REST API, GET GetPlantsByBlooming
+Frontend search by blooming periods
+
+
+Services:
+
+PlantsService 
+	GET GetByName(string name) -> Array<Plant>
+	GET GetById(int id) -> Plant
+	GET GetByBlooming(Array<int> months) -> Array<Plant>
+UserAccountService
+	POST Create(string username, string password) -> userid
+	GET Login(string username, string password) -> userid
+UserDatabaseService
+	POST AddFavourite(int userid, int plantid) -> void
+	DELETE DeleteFavourite(int userid, int plantid) -> void
+	GET GetFavourites(int userid) -> Array<Favourites>
+PhotoService
+	GET GetById(int photoid) -> string 
+
+
+
+
+
+
+
+Plant database containing:
+
+"CaptionId" - Caption" - "Plant ID"
+0 - Rose - 17
+1 -   - 17
+
+
+Plants table:
+- Plant ID
+- Plant name
+- 
+- System plant photo storage ID
+- User plant photo storage 
+
+Plant photos table:
+- Photo ID
+- Photo type (system/user)
+- Plant ID
+
+
+
+
