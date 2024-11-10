@@ -8,6 +8,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+DROP TABLE [dbo].[LightLevel]
+GO
+
 CREATE TABLE [dbo].[LightLevel](
 	[LightLevelID] [int] IDENTITY(1,1) NOT NULL,
 	[LightLevel] [nvarchar](max) NOT NULL,

@@ -8,6 +8,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+DROP TABLE [dbo].[Photos]
+GO
+
 CREATE TABLE [dbo].[Photos](
 	[PhotoID] [int] NOT NULL,
 	[PhotoURL] [varchar](max) NOT NULL,

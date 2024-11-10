@@ -8,6 +8,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+DROP TABLE [dbo].[Captions]
+GO
+
 CREATE TABLE [dbo].[Captions](
 	[CaptionID] [int] IDENTITY(1,1) NOT NULL,
 	[Caption] [nvarchar](max) NOT NULL,

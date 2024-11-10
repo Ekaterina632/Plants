@@ -8,6 +8,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+DROP TABLE [dbo].[Plants]
+GO
+
 CREATE TABLE [dbo].[Plants](
 	[PlantID] [int] IDENTITY(1,1) NOT NULL,
 	[PlantName] [nvarchar](max) NULL,

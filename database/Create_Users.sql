@@ -8,6 +8,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+DROP TABLE [dbo].[Users]
+GO
+
 CREATE TABLE [dbo].[Users](
 	[UserID] [int] NOT NULL,
 	[Username] [varchar](max) NOT NULL,

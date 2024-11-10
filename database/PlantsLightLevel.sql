@@ -8,6 +8,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+DROP TABLE [dbo].[PlantsLightLevel]
+GO
+
 CREATE TABLE [dbo].[PlantsLightLevel](
 	[PlantID] [int] NOT NULL,
 	[LightLevelID] [int] NOT NULL

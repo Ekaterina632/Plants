@@ -8,6 +8,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+DROP TABLE [dbo].[BloomPeriods]
+GO
+
 CREATE TABLE [dbo].[BloomPeriods](
 	[BloomID] [int] IDENTITY(1,1) NOT NULL,
 	[PlantID] [int] NOT NULL,
