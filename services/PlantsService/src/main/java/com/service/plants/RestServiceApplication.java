@@ -9,3 +9,8 @@ public class RestServiceApplication {
         SpringApplication.run(RestServiceApplication.class, args);
     }
 }
+
+
+// Main entry point
+// To set up an embedded server (Tomcat here) on port 8080
+// To start the application and make API available
