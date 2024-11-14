@@ -1,23 +1,28 @@
 package com.service.plants;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-@RestController
-@RequestMapping("/api")
+@RestController // default return data in JSON
+@RequestMapping("/api") // initial path for the methods inside this controller
 public class PlantsController {
-    @GetMapping("/getById")
-    public Plant getById(@RequestBody GetByIdRequest request) {
-        var rose = new Plant();
-        rose.Id = request.Id;
-        rose.Name = "Red rose";
-        rose.Captions = new ArrayList<String>();
-        rose.Captions.add("caption1");
-        rose.Captions.add("caption2");
-        return rose;
+
+    public PlantService plantService;
+
+    public PlantsController() {
+        PlantRepository plantRepository = new PlantRepository();  // Make sure this is properly implemented
+        // Pass the plantRepository to the PlantService constructor
+        this.plantService = new PlantService(plantRepository);
     }
+
+    @GetMapping("/getById") // to handle GET requests (should it be POST here because we use body?)
+    public Plant getById(@RequestBody GetByIdRequest request) { // GetByIdRequest class describes the body structure
+        return plantService.getPlantById(request.Id); // use plantService to get Plant object using getPlantById method
+    }
+
 }
+
+// To handle HTTP requests and return data in JSON format
+
