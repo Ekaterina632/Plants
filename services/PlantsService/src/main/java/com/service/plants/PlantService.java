@@ -13,4 +13,9 @@ public class PlantService {
     public Plant getPlantById(int id) {
         return plantRepository.findById(id);  // Call the repository to fetch the plant by ID
     }
+
+    public int createPlant(String name) {
+        return plantRepository.savePlant(name);
+    }
+
 }
