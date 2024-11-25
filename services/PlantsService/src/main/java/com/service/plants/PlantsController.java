@@ -19,8 +19,13 @@ public class PlantsController {
     }
 
     @GetMapping("/getById") // to handle GET requests (should it be POST here because we use body?)
-    public Plant getById(@RequestParam int id) { // GetByIdRequest class describes the body structure
+    public Plant getById(@RequestParam int id) {
         return plantService.getPlantById(id); // use plantService to get Plant object using getPlantById method
+    }
+
+    @PostMapping("/createPlant")
+    public int createPlant(@RequestBody CreatePlantRequest createPlantRequest) {
+        return plantService.createPlant(createPlantRequest.getName());
     }
 
 }
