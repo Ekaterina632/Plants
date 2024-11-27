@@ -36,4 +36,44 @@ public class PlantRepository {
         }
         return null;  // Return null if no plant found with the given ID
     }
+
+    public int savePlant(String name) throws FailedToConnectToDatabaseException, ItemAlreadyExistsException, ItemIsInvalidException {
+        if (name == null || name.trim().isEmpty()) {
+            throw new ItemIsInvalidException("Plant name is invalid.");
+        }
+
+        String checkExistenceSql = "SELECT COUNT(*) FROM Plants WHERE PlantName = ?";
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+            PreparedStatement checkStatement = connection.prepareStatement(checkExistenceSql)) {
+
+            checkStatement.setString(1, name);
+            try (ResultSet resultSet = checkStatement.executeQuery()) {
+                if (resultSet.next() && resultSet.getInt(1) > 0) {
+                    throw new ItemAlreadyExistsException("Plant with this name already exists.");
+                }
+            }
+        } catch (SQLException e) {
+            throw new FailedToConnectToDatabaseException("Unable to connect to the database: " + e.getMessage());
+        }
+
+        String sql = "INSERT INTO Plants (PlantName) VALUES (?)";
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            statement.setString(1, name);
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows > 0) {
+                // Get the generated PlantID (auto-incremented)
+                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        return generatedKeys.getInt(1);  // Return the generated ID
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new FailedToConnectToDatabaseException("Unable to connect to the database: " + e.getMessage());
+        }
+        return -1;  // Return -1 if something goes wrong
+    }
 }
