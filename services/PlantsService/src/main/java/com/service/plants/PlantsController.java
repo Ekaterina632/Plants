@@ -23,9 +23,12 @@ public class PlantsController {
         return plantService.getPlantById(id); // use plantService to get Plant object using getPlantById method
     }
 
-    @PostMapping("/createPlant")
+//    @PostMapping("/createPlant")
+    @PostMapping
     public int createPlant(@RequestBody CreatePlantRequest createPlantRequest) {
-        return plantService.createPlant(createPlantRequest.getName());
+        System.out.println("CreatePlant endpoint hit!");
+        System.out.println("Received Name: " + createPlantRequest.name);
+        return plantService.createPlant(createPlantRequest.name);
     }
 
 }
